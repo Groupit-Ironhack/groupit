@@ -6,8 +6,15 @@ const userSchema = new Schema(
     name:String,
     username: String,
     password: String,
-    age: Number,
-    location:String,
+    age: {
+      type: Number,
+      min:18,
+      max:110
+    },
+    adress:{
+      country:String,
+      city:String
+    },
     imgUrl:String
   },
   {
