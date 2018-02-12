@@ -3,9 +3,12 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    name:String,
     username: String,
     password: String,
-    facebookID: String
+    age: Number,
+    location:String,
+    imgUrl:String
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
