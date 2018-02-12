@@ -5,13 +5,7 @@ const concertSchema = new Schema(
   {
     concertId: String,
     locationId: String,
-    date: Date,
-    attendants: [
-      { 
-        type : Schema.Types.ObjectId, 
-        ref: 'User' 
-      }
-    ],
+    date: Date
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" }

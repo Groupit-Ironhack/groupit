@@ -2,7 +2,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Concert = require("../models/Concert");
-const Artist = require("../models/Artist");
 const { dbURL } = require("../config");
 
 mongoose.connect(dbURL);
