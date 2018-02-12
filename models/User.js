@@ -1,11 +1,22 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Plan = require ('../models/Plan');
 
 const userSchema = new Schema(
   {
+    name:String,
     username: String,
     password: String,
-    facebookID: String
+    age: {
+      type: Number,
+      minAge:18,
+      maxAge:110
+    },
+    adress:{
+      country:String,
+      city:String
+    },
+    imgUrl:String,
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
