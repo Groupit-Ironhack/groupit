@@ -11,16 +11,25 @@ authRoutes.get("/signup", (req, res, next) => {
 
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
+  const name = req.body.name;
   const password = req.body.password;
+  const age = req.body.age;
+  const address = req.body.address;
+
+  console.log(age)
 
   if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+    res.render("auth/signup", { message: "Indique usuario y contraseña" });
+    return;
+  }
+  else if(!( age > 18 && age<100 ) ) {
+    res.render("auth/signup", { message: "La edad debe estar comprendida entre 18 y 110 años!" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.render("auth/signup", { message: "El usuario especificado ya existe" });
       return;
     }
 
@@ -29,12 +38,15 @@ authRoutes.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      name,
+      password: hashPass,
+      age,
+      address
     });
 
     newUser.save(err => {
       if (err) {
-        res.render("auth/signup", { message: "Something went wrong" });
+        res.render("auth/signup", { message: "Algo salió mal" });
       } else {
         res.redirect("/");
       }
