@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Plan = require ('../models/Plan');
 
 const userSchema = new Schema(
   {
@@ -15,7 +16,7 @@ const userSchema = new Schema(
       country:String,
       city:String
     },
-    imgUrl:String
+    imgUrl:String,
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" }

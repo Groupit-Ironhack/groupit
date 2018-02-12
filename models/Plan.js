@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const User = require('../models/User')
+const User = require('../models/User');
 
 const planSchema =new Schema(
     {
@@ -10,28 +10,9 @@ const planSchema =new Schema(
           ref: 'User' 
         }
       ],
+      concertId:String, 
       description: String,
-      location: {
-        name : String,
-        address: {
-          number: Number,
-          street: String,
-          city: String,
-          state: String,
-          country: String,
-          zip: Number
-        },
-        coordinates: {
-          lat: Number,
-          lng: Number
-        }
-      },
-      attendants: [
-        { 
-          type : Schema.Types.ObjectId, 
-          ref: 'User' 
-        }
-      ],
+      locationId: String,
       date: Date,
     },
     {
