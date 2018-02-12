@@ -8,6 +8,7 @@ const concertSchema = new Schema(
     location: {
       name : String,
       address: {
+        number: Number,
         street: String,
         city: String,
         state: String,
