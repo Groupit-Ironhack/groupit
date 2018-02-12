@@ -13,7 +13,7 @@ router.get("/private", isLoggedIn, function(req, res, next) {
 });
 
 router.get("/onlyme", onlyMe, function(req, res, next) {
-  res.render("private");
+  res.render("concerts");
 });
 
 module.exports = router;

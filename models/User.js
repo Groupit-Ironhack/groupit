@@ -12,7 +12,7 @@ const userSchema = new Schema(
       minAge:18,
       maxAge:110
     },
-    adress:{
+    address:{
       country:String,
       city:String
     },
