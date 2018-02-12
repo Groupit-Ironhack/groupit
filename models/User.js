@@ -8,8 +8,8 @@ const userSchema = new Schema(
     password: String,
     age: {
       type: Number,
-      min:18,
-      max:110
+      minAge:18,
+      maxAge:110
     },
     adress:{
       country:String,
