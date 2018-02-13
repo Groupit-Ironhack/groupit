@@ -103,6 +103,11 @@ authRoutes.post('/profile/edit', (req, res, next) => {
   });
 });
 
+authRoutes.get('/profile', (req, res, next) => {
+  const userId  = req.user._id;
+  res.redirect(`/profile/${userId}`)
+});
+
 authRoutes.get('/profile/:id', (req, res, next) => {
   const userId  = req.params.id;
 

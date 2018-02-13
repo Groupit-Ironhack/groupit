@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font-size: 14px;
   font-family: sans-serif;
 }
@@ -12,4 +11,16 @@ a {
   border: 1px solid #ccc;
   padding: 20px;
   margin: 10px 0;
+}
+
+.top-container{
+  padding-top: 50px;
+}
+
+.profile-img img{
+  max-width: 90%;
+  margin-bottom: 40px;
+}
+.profile-info table{
+  margin-top: 30px;
 }
