@@ -9,11 +9,11 @@ router.get("/", function(req, res, next) {
 });
 
 router.get("/private", isLoggedIn, function(req, res, next) {
-  res.render("profile");
+  res.render("user/profile");
 });
 
 router.get("/onlyme", onlyMe, function(req, res, next) {
-  res.render("concerts");
+  res.render("index");
 });
 
 module.exports = router;

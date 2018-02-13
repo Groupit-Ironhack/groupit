@@ -2,20 +2,28 @@
 <form action="/auth/login/edit" method="POST">
     <div>
         <label for="username">Username:</label>
+        <br>
         <input type="text" name="username" value="<%= user.username%>">
     </div>
+    <br>
     <div>
         <label for="password">New Password:</label>
+        <br>
         <input type="password" name="password">
     </div>
+    <br>
     <div>
         <label for="name">Name:</label>
+        <br>
         <input type="text" name="name" value="<%= user.name%>">
     </div>
+    <br>
     <div>
         <label for="age">Age:</label>
+        <br>
         <input type="text" name="age" value="<%= user.age%>">
     </div>
+    <br>
     <div>
         <label for="address">Address:</label>
         <br>
@@ -23,6 +31,7 @@
         <br>
         City:<input type="text" name="address2" value="<%= user.address.city%>">
     </div>
+    <br>
     <div>
         <input type="submit" value="Edit">
     </div>

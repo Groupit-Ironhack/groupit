@@ -14,7 +14,8 @@ authRoutes.post("/signup", (req, res, next) => {
   const name = req.body.name;
   const password = req.body.password;
   const age = req.body.age;
-  const address = req.body.address;
+  const country = req.body.country;
+  const city = req.body.city
 
   console.log(age)
 
@@ -41,7 +42,8 @@ authRoutes.post("/signup", (req, res, next) => {
       name,
       password: hashPass,
       age,
-      address
+      "address.country": country,
+      "address.city" : city
     });
 
     newUser.save(err => {
@@ -63,7 +65,7 @@ authRoutes.get('/login/edit', (req, res, next) => {
 
   User.findById(userId, (err, user) => {
     if (err) { return next(err); }
-    res.render('profile', { user: user });
+    res.render('user/profile', { user: user });
   });
 });
 

@@ -1,8 +1,7 @@
 // axios.get(`http://eventful.com/json/events/search?app_key=87292345ygaf9iu2367&category=music&location=Asturias`)
 //         .then(function (response) {
 //           //console.log(response.request.socket._httpMessage.connection._events);
-//           console.log(response);
-          
+//           console.log(response);       
 //   })
 const printConcert = (concert) => {
   console.log(concert);
