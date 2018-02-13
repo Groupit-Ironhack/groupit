@@ -1,11 +1,4 @@
-// axios.get(`http://eventful.com/json/events/search?app_key=87292345ygaf9iu2367&category=music&location=Asturias`)
-//         .then(function (response) {
-//           //console.log(response.request.socket._httpMessage.connection._events);
-//           console.log(response);
-          
-//   })
 const printConcert = (concert) => {
-  console.log(concert);
   let div = $("<div>").addClass("concert-card")
   let h3 = $("<h3>").text(concert.title).attr("data-id", concert.id).addClass("concert");
   let loc = $("<p>").text(`${concert.venue_name} - ${concert.city_name}`);
