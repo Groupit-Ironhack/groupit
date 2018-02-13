@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const User = require("../models/User");
 const onlyMe = require('../middlewares/onlyMe')
+const multer  = require('multer');
+var upload = multer({ dest: './public/uploads/' });
 const bcryptSalt = 10;
 
 authRoutes.get("/signup", (req, res, next) => {
@@ -79,15 +81,17 @@ authRoutes.get('/profile/edit', (req, res, next) => {
   });
 });
 
-authRoutes.post('/profile/edit', (req, res, next) => {
+authRoutes.post('/profile/edit', upload.single('imgUrl'),(req, res, next) => {
+  console.log("post")
   const userId  = req.user._id;
-  
+  console.log(req.file.filename)
   const updates = {
     name: req.body.name,
     username: req.body.username,
     age: req.body.age,
     "address.country": req.body.address1,
-    "address.city": req.body.address2
+    "address.city": req.body.address2,
+    imgUrl: `/uploads/${req.file.filename}`
   };
   
   if (req.body.password != ""){
