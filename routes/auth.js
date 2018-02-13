@@ -58,9 +58,42 @@ authRoutes.get("/login", (req, res, next) => {
   res.render("auth/login");
 });
 
-authRoutes.post(
-  "/login",
-  passport.authenticate("local", {
+authRoutes.get('/login/edit', (req, res, next) => {
+  const userId  = req.user._id;
+
+  User.findById(userId, (err, user) => {
+    if (err) { return next(err); }
+    res.render('profile', { user: user });
+  });
+});
+
+
+authRoutes.post('/login/edit', (req, res, next) => {
+  const userId  = req.user._id;
+  
+  const updates = {
+    name: req.body.name,
+    username: req.body.username,
+    age: req.body.age,
+    "address.country": req.body.address1,
+    "address.city": req.body.address2
+  };
+  
+  if (req.body.password != ""){
+    const password = req.body.password;
+    let salt = bcrypt.genSaltSync(bcryptSalt);
+    let hashPass = bcrypt.hashSync(password, salt);
+    updates.password = hashPass;
+  }
+
+  User.findByIdAndUpdate(userId,updates, (err, user) => {
+    if (err) { return next(err); }
+    res.redirect('/auth/login/edit')
+  });
+});
+
+
+authRoutes.post("/login",passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/auth/login"
   })

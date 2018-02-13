@@ -21,7 +21,7 @@ const users= [
     {
   username: "josiño34",
   name: "Josiño",
-  adress: {
+  address: {
     country: "España",
     city: "Lugo"
   },
@@ -31,7 +31,7 @@ const users= [
 {
   username: "herminia11",
   name: "Herminia",
-  adress: {
+  address: {
     country: "España",
     city: "Asturias"
   },
@@ -41,7 +41,7 @@ const users= [
 {
   username: "ernano23",
   name: "Isaac",
-  adress: {
+  address: {
     country: "España",
     city: "Sevilla"
   },
