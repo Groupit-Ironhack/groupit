@@ -16,7 +16,9 @@ const userSchema = new Schema(
       country:String,
       city:String
     },
-    imgUrl:String,
+    imgUrl:{ 
+      type: String, 
+      default: "img/user-placeholder.png" }  
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
