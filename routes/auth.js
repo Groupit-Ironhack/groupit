@@ -3,6 +3,7 @@ const authRoutes = express.Router();
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const User = require("../models/User");
+const onlyMe = require('../middlewares/onlyMe')
 const bcryptSalt = 10;
 
 authRoutes.get("/signup", (req, res, next) => {
@@ -111,6 +112,14 @@ authRoutes.get('/profile/:id', (req, res, next) => {
   });
 });
 
+authRoutes.get('/profile/delete/:id',(req, res, next) => {
+  const userId  = req.user._id;
+
+  User.deleteOne({_id:userId}, (err) => {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
 
 authRoutes.get("/logout", (req, res) => {
   req.logout();

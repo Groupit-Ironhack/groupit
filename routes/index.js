@@ -4,9 +4,13 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 const onlyMe = require("../middlewares/onlyMe");
 
 /* GET home page. */
-router.get("/",isLoggedIn, function(req, res, next) {
-  let userId = req.user._id
-  res.render("index",{userId});
+router.get("/", function(req, res, next) {
+  let user = req.user
+   if(user == undefined){
+    res.render("index");
+  }else{
+    res.redirect('/concerts')
+  }
 });
 
 module.exports = router;

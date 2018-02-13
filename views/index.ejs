@@ -11,10 +11,8 @@
   <h1>
     <%= title %>
   </h1>
-  <p>Welcome to
-    <%= title %>
-  </p>
-  <% if(!user) { %>
+  <p>Welcome to GroupIt
+  </p>  
     <ul>
       <li>
         <a href="/login">Login</a>
@@ -23,17 +21,6 @@
         <a href="/signup">Signup</a>
       </li>
     </ul>
-    <% } else { %>
-      <h2>Hola
-        <%= user.name %>
-      </h2>
-      <img src="/images/descarga.jpeg" alt="" />
-      </br>
-      <a href="/profile/edit">Editar perfil</a>
-      <a href="/profile/<%= user.id %>">Mi perfil</a>
-      <a href="/concerts">Conciertos</a>
-      <a href="/logout">Logout</a>
-      <% } %>
 </body>
 
 </html>
