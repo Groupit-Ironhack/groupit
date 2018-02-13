@@ -1,15 +1,44 @@
-<h1>My Profile</h1>
-    <div>
-        <p>Username: <%= user.username%></p>
+<div class="container top-container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 profile-img">
+        <img src="../img/user-placeholder.png" alt="">
+        <ul>
+            <li>
+                <a href="/profile/edit">Editar perfil</a>
+            </li>
+            <li>
+                <a href="/logout">Logout</a>
+            </li>
+        </ul>
+        
+        
     </div>
-    <div>
-        <p>Name: <%= user.name%></p>
+    <div class="col-xs-12 col-sm-8 profile-info">
+        <h1><%= user.name%>'s Profile</h1>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Username: </td>
+                    <td><%= user.username%></td>
+                </tr>
+                <tr>
+                    <td>Name: </td>
+                    <td><%= user.name%></td>
+                </tr>
+                <tr>
+                    <td>Age: </td>
+                    <td><%= user.age%></td>
+                </tr>
+                <tr>
+                    <td>Country: </td>
+                    <td><%= user.address.country%></td>
+                </tr>
+                <tr>
+                    <td>Country: </td>
+                    <td><%= user.address.city%></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div>
-        <p>Age: <%= user.age%></p>
-    </div>
-    <div>
-        <p>Address:</p>
-        <p>-Country:<%= user.address.country%></p>
-        <p>-City:<%= user.address.city%></p>
-    </div>
+  </div>
+</div>
