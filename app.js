@@ -59,7 +59,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", index);
-app.use("/auth", auth);
+app.use("/", auth);
 app.use("/concerts", concerts);
 
 // catch 404 and forward to error handler

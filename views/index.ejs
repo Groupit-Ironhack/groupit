@@ -17,10 +17,10 @@
   <% if(!user) { %>
     <ul>
       <li>
-        <a href="/auth/login">Login</a>
+        <a href="/login">Login</a>
       </li>
       <li>
-        <a href="/auth/signup">Signup</a>
+        <a href="/signup">Signup</a>
       </li>
     </ul>
     <% } else { %>
@@ -29,10 +29,10 @@
       </h2>
       <img src="/images/descarga.jpeg" alt="" />
       </br>
-      <a href="/private">Ver a los simpson</a>
-      <a href="/auth/login/edit">Editar perfil</a>
-      <a href="/onlyme?id=<%= user._id %>">Onlyme</a>
-      <a href="/auth/logout">Logout</a>
+      <a href="/profile/edit">Editar perfil</a>
+      <a href="/profile/<%= user.id %>">Mi perfil</a>
+      <a href="/concerts">Conciertos</a>
+      <a href="/logout">Logout</a>
       <% } %>
 </body>
 

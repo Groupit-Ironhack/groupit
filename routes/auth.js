@@ -26,6 +26,9 @@ authRoutes.post("/signup", (req, res, next) => {
   else if(!( age > 18 && age<100 ) ) {
     res.render("auth/signup", { message: "La edad debe estar comprendida entre 18 y 110 años!" });
     return;
+  }else if(city === ""){
+    res.render("auth/signup", { message: "Indique una ciudad" });
+    return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
@@ -60,17 +63,22 @@ authRoutes.get("/login", (req, res, next) => {
   res.render("auth/login");
 });
 
-authRoutes.get('/login/edit', (req, res, next) => {
+authRoutes.post("/login",passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login"
+  })
+);
+
+authRoutes.get('/profile/edit', (req, res, next) => {
   const userId  = req.user._id;
 
   User.findById(userId, (err, user) => {
     if (err) { return next(err); }
-    res.render('user/profile', { user: user });
+    res.render('user/edit', { user: user });
   });
 });
 
-
-authRoutes.post('/login/edit', (req, res, next) => {
+authRoutes.post('/profile/edit', (req, res, next) => {
   const userId  = req.user._id;
   
   const updates = {
@@ -90,16 +98,19 @@ authRoutes.post('/login/edit', (req, res, next) => {
 
   User.findByIdAndUpdate(userId,updates, (err, user) => {
     if (err) { return next(err); }
-    res.redirect('/auth/login/edit')
+    res.redirect('/profile')
   });
 });
 
+authRoutes.get('/profile/:id', (req, res, next) => {
+  const userId  = req.params.id;
 
-authRoutes.post("/login",passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/auth/login"
-  })
-);
+  User.findById(userId, (err, user) => {
+    if (err) { return next(err); }
+    res.render('user/profile', { user: user });
+  });
+});
+
 
 authRoutes.get("/logout", (req, res) => {
   req.logout();
