@@ -13,10 +13,20 @@ Run Sample api searches <br><br>
 <hr>
 <br>
 
-<div id="search-results">
-  
-</div>
+<div id="search-results"></div>
+<hr>
+<h2>Suggested Concerts near you!</h2>
+<div id="suggested-concerts">
+  <% events.forEach((event) => {%>
+  <div class="concert-card">
+    <h3 data-id="<%= event.id %>" class="concert"><%= event.title %></h3>
+    <p><%= event.venue_name %> - <%= event.city_name %></p>
+    <p><%= event.start_time %></p>
+  </div>
+  <% }) %>
+ </div> 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="http://api.eventful.com/js/api"></script>
 <script type="text/javascript" src="../js/events.js"></script>
 
