@@ -1,10 +1,17 @@
 const printConcert = (concert) => {
-  let div = $("<div>").addClass("concert-card")
-  let h3 = $("<h3>").text(concert.title).attr("data-id", concert.id).addClass("concert");
+  let mainDiv = $("<div>").addClass("col-sm-6 col-md-4 concert-card")
+  let subDiv = $("<div>").addClass("card")
+  let div = $("<div>").addClass("card-block")
+  let h5 = $("<h5>").attr("data-id", concert.id).addClass("card-title concert");
+  let a = $("<a>").text(concert.title).attr("href",`/concerts/${concert.id}`)
+  h5.append(a)
   let loc = $("<p>").text(`${concert.venue_name} - ${concert.city_name}`);
   let date = $("<p>").text(concert.start_time);
-  div.append(h3).append(loc).append(date);
-  $("#search-results").append(div);
+  let btn = $("<a>").attr("href",`/concerts/${concert.id}`).addClass("btn btn-primary").text("View")
+  div.append(h5).append(loc).append(date).append(btn);
+  subDiv.append(div);
+  mainDiv.append(subDiv)
+  $("#search-results").append(mainDiv);
 };
 
 function show_events() {

@@ -3,14 +3,16 @@ body {
   font-family: sans-serif;
 }
 
+h2 {
+  margin-bottom: 30px;
+}
+
 a {
   color: #00B7FF;
 }
 
 .concert-card{
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
 .top-container{
@@ -37,4 +39,11 @@ a {
 }
 .back-link .back{
   margin-bottom: 16px;
+}
+.form-inline{
+  margin-bottom: 30px;
+}
+
+.margin-top-30{
+  margin-top: 30px;
 }

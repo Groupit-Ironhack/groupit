@@ -5,29 +5,38 @@
       <form class="form-inline">
         <input class="form-control mb-4 mr-sm-4 mb-sm-0" id="where" type="text" name="where" placeholder="where"/>
         <input class="form-control mb-4 mr-sm-4 mb-sm-0" id="performer" type="text" name="artist" placeholder="artist"/>
-        <input type="button" class="btn btn-info" onclick="show_events()" value="Show Events" /> <br>
+        <input type="button" class="btn btn-primary" onclick="show_events()" value="Show Events" /> <br>
       </form>
     </div>
   </div>
-  <div class="row">
-    <div id="search-results" class="col">
-    </div>
-  
+  <div class="row" id="search-results">
   </div>
   <div class="row">
     <div class="col">
-      <hr>
-      <h2>Suggested Concerts near you!</h2>
-      <div id="suggested-concerts">
-        <% events.forEach((event) => {%>
-          <div class="concert-card">
-            <h3 data-id="<%= event.id %>" class="concert">
+    <hr>
+      <h2 class="margin-top-30">Suggested Concerts near you!</h2>
+      <div class="row"  id="suggested-concerts">
+      <% events.forEach((event) => {%>
+      <div class="col-sm-6 col-md-4 concert-card">
+        <div class="card">
+          <div class="card-block">
+            <h5 class="card-title concert" data-id="<%= event.id %>">
               <a href="/concerts/<%= event.id %>"><%= event.title %></a>
-            </h3>
-            <p><%= event.venue_name %> - <%= event.city_name %></p>
-            <p><%= event.start_time %></p>
+            </h5>
+            <p class="card-text">
+              <%= event.start_time %>
+            </p>
+            <p class="card-text">
+              <%= event.venue_name %> - <%= event.city_name %>
+            </p>
+            <a href="/concerts/<%= event.id %>" class="btn btn-primary">View</a>
           </div>
+        </div>
+        </div>
         <% }) %>
+          
+      </div>
+      <div>
       </div>
     </div>
   </div> 
