@@ -1,3 +1,4 @@
+require('dotenv').config()
 module.exports = {
-    dbURL: 'mongodb://localhost/groupit-db'
+    dbURL: process.env.dbURL
 }
