@@ -4,12 +4,12 @@ const User = require('../models/User');
 
 const planSchema =new Schema(
     {
-      author: [
+      author: 
         { 
           type : Schema.Types.ObjectId, 
           ref: 'User' 
         }
-      ],
+      ,
       concertId:String, 
       description: String,
       locationId: String,
