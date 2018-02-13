@@ -24,6 +24,9 @@ a {
 .profile-info table{
   margin-top: 30px;
 }
+.btn:hover{
+  cursor: pointer;
+}
 .btn.btn-danger a,
 .btn.btn-danger a:hover{
   color: #fff;
