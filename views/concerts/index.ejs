@@ -1,11 +1,5 @@
 <h1>Concerts Search</h1>
 </br>
-<a href="/profile/edit">Editar perfil</a>
-<a href="/profile/<%= user.id %>">Mi perfil</a>
-<a href="/logout">Logout</a>
-
-Run Sample api searches <br><br>
-
 <label for="where">Where?</label><br>
 <input id="where" type="text" name="where" /><br><br>
 
@@ -23,7 +17,7 @@ Run Sample api searches <br><br>
 <div id="suggested-concerts">
   <% events.forEach((event) => {%>
   <div class="concert-card">
-    <h3 data-id="<%= event.id %>" class="concert"><%= event.title %></h3>
+    <h3 data-id="<%= event.id %>" class="concert"><a href="/concerts/<%= event.id %>">"<%= event.title %></a></h3>
     <p><%= event.venue_name %> - <%= event.city_name %></p>
     <p><%= event.start_time %></p>
   </div>

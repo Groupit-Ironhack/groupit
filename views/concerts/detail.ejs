@@ -1,1 +1,11 @@
-<!-- Detalles de un concierto especifico -->
+<h1><%= event.title %></h1>
+<h3><%= event.venue_name %></h3>
+<p><%= event.latitude %></p>
+<p><%= event.longitude %></p>
+<h5><%= event.address %></h5> 
+<p><%= event.city %></p>
+<% if(event.performers == null){ %>
+<% }else{ %>
+<h3><%= event.performers.performer.short_bio %></h3>
+<% } %>
+<p><%= event.start_time%></p>
