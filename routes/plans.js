@@ -44,7 +44,7 @@ router.post("/:concertId/new", (req, res, next) => {
         .save()
         .then(e => {
           console.log("Plan asociado a concierto");
-          res.redirect("/");
+          res.redirect(`/concerts/${concertId}`);
         })
         .catch(e => {
           console.log(e);
