@@ -3,6 +3,7 @@ const router = express.Router();
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const onlyMe = require("../middlewares/onlyMe");
 const User = require("../models/User");
+const ConcertPlan = require("../models/Concert-Plan");
 const axios = require("axios");
 
 router.get("/", isLoggedIn, function(req, res, next) {
@@ -35,10 +36,16 @@ router.get("/:concertId", isLoggedIn, (req, res, next) => {
       `http://api.eventful.com/json/events/get?app_key=KLN35NSPZJRVNwD3&category=music&id=${concertId}`
     )
     .then(function(response) {
-      let event = response.data;
-      res.render("concerts/detail", { event });
+      ConcertPlan.find({concertId: concertId}).populate("planId").then(plans =>{
+        console.log(plans)
+        plans.shift()
+        let event = response.data;
+        res.render("concerts/detail", { event, plans });
+      }).catch((error) => {
+        console.log(error);
+      });
     })
-    .catch(function(error) {
+    .catch((error) => {
       console.log(error);
     });
 });

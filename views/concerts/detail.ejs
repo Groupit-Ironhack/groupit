@@ -1,3 +1,6 @@
+<div class="container top-container">
+<div class="row">
+    <div class="col">
 <h1><%= event.title %></h1>
 <h3><%= event.venue_name %></h3>
 <p><%= event.latitude %></p>
@@ -10,4 +13,34 @@
 <% } %>
 <p><%= event.start_time%></p>
 
-<a href="/plans/<%= event.id%>/new">Add Plan</a>
+</div>
+</div>
+<hr>
+
+<div class="row">
+<div class="col">
+<h2 class="margin-top-30">Plans for this concert</h2>
+<a href="/plans/<%= event.id%>/new" class="btn btn-success">Add Plan</a>
+      <div class="row"  id="suggested-concerts">
+      <% plans.forEach((plan) => {%>
+      <div class="col-6 concert-card">
+        <div class="card">
+          <div class="card-block">
+            <h5 class="card-title concert" data-id="<%= plan.planId.id %>">
+              <a href="/concerts/<%= plan.planId._id %>"><%= plan.planId.locationId %></a>
+            </h5>
+            <p class="card-text">
+              <%= plan.planId.description %>
+            </p>
+            <a href="/concerts/<%= event.id %>" class="btn btn-primary">View</a>
+          </div>
+        </div>
+        </div>
+        <% }) %>
+          
+      </div>
+      <div>
+      </div>
+    </div>
+  </div> 
+</div>
