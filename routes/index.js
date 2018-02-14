@@ -31,15 +31,23 @@ router.get("/plans/:planId/join", (req,res,next) => {
       .save()
       .then(e => {
         console.log("Plan asociado a concierto");
-        res.redirect(`/concerts`);
+        res.redirect('back')
       })
       .catch(e => {
         console.log(e);
-        res.redirect(`/plans/${planId}/detail`);
+        res.redirect('back')
         return;
       });
   });
   
 });
+router.get("/plans/:planId/leave", (req,res,next) => {
+  let planId = req.params.planId;
+  
+  PlanUser.deleteOne({'planId':planId}, (err) => {
+    if (err) { return next(err); }
+    res.redirect('back')
+  });
 
+});
 module.exports = router;
