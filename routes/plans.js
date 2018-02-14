@@ -5,6 +5,7 @@ const onlyMe = require("../middlewares/onlyMe");
 const User = require("../models/User");
 const Plan = require("../models/Plan");
 const ConcertPlan = require("../models/Concert-Plan");
+const PlanUser = require("../models/Plan-User");
 
 router.get("/:concertId/new", (req, res, next) => {
   const concertId = req.params.concertId;
@@ -100,6 +101,10 @@ router.get('/:planId/delete',(req, res, next) => {
   const planId  = req.params.planId;
 
   ConcertPlan.deleteOne({'planId':planId}, (err) => {
+    if (err) { return next(err); }
+  });
+
+  PlanUser.deleteOne({'planId':planId}, (err) => {
     if (err) { return next(err); }
   });
 
