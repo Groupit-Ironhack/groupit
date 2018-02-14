@@ -51,7 +51,7 @@ router.post("/:concertId/new", (req, res, next) => {
 
           res.render("plan/new", { message: "Algo salió mal" });
           return;
-        });
+      });
     })
     .catch(e => {
       console.log(e);
