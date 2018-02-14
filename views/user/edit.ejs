@@ -1,40 +1,65 @@
-<h1>My Profile</h1>
-<form action="/auth/login/edit" method="POST">
-    <div>
-        <label for="username">Username:</label>
-        <br>
-        <input type="text" name="username" value="<%= user.username%>">
+<div class="container top-container back-link">
+    <div class="row">
+        <div class="col back"><a href="/profile"> < Back</a></div>
     </div>
-    <br>
-    <div>
-        <label for="password">New Password:</label>
-        <br>
-        <input type="password" name="password">
-    </div>
-    <br>
-    <div>
-        <label for="name">Name:</label>
-        <br>
-        <input type="text" name="name" value="<%= user.name%>">
-    </div>
-    <br>
-    <div>
-        <label for="age">Age:</label>
-        <br>
-        <input type="text" name="age" value="<%= user.age%>">
-    </div>
-    <br>
-    <div>
-        <label for="address">Address:</label>
-        <br>
-        Country:<input type="text" name="address1" value="<%= user.address.country%>">
-        <br>
-        City:<input type="text" name="address2" value="<%= user.address.city%>">
-    </div>
-    <br>
-    <div>
-        <input type="submit" value="Edit"> 
-        <a href="/profile/delete/<%= user.id %>">Borrar perfil</a>
-    </div>
-</form>
+    <form action="/profile/edit" method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col col-sm-4 profile-img">
+                <img src="../<%= user.imgUrl %>" alt="">
+                <label for="usu-img">Profile picture:</label>
+                <input class="form-control" id="usu-img" type="file" name="imgUrl">
+            </div>
+            <div class="col col-sm-8 profile-info">
+                <h1><%= user.name%>'s profile</h1>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Username: </td>
+                            <td>
+                                <input class="form-control" type="text" name="username" value="<%= user.username%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Change Password: </td>
+                            <td>
+                                <input class="form-control" type="password" name="password">   
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Name: </td>
+                            <td>
+                                <input class="form-control" type="text" name="name" value="<%=  user.name%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Age: </td>
+                            <td>
+                                <input class="form-control" type="text" name="age" value="<%= user.age%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Country: </td>
+                            <td>
+                                <input class="form-control" type="text" name="address1" value="<%= user.address.country%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>City: </td>
+                            <td>
+                                <input class="form-control" type="text" name="address2" value="<%= user.address.city%>">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <hr>    
+                <button type="button" class="btn btn-danger float-left">
+                    <a href="/profile/delete/<%= user.id %>">Delete Account</a>
+                </button>
+                <input class="btn btn-success float-right" type="submit" value="Save Changes"> 
+            
+            </div>
+        </div>
+    </form>    
+</div>
 

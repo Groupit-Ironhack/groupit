@@ -1,30 +1,48 @@
-<h1>Concerts Search</h1>
-</br>
-<label for="where">Where?</label><br>
-<input id="where" type="text" name="where" /><br><br>
-
-<label for="performer">Who?</label><br>
-<input id="performer" type="text" name="where" /><br><br>
-
-<input type="button" onclick="show_events()" value="Show Events" /> <br>
-<br>
-<hr>
-<br>
-
-<div id="search-results"></div>
-<hr>
-<h2>Suggested Concerts near you!</h2>
-<div id="suggested-concerts">
-  <% events.forEach((event) => {%>
-  <div class="concert-card">
-    <h3 data-id="<%= event.id %>" class="concert"><a href="/concerts/<%= event.id %>">"<%= event.title %></a></h3>
-    <p><%= event.venue_name %> - <%= event.city_name %></p>
-    <p><%= event.start_time %></p>
+<div class="container top-container">
+  <div class="row">
+    <div class="col">
+      <h2>Search concerts</h2>
+      <form class="form-inline">
+        <input class="form-control mb-4 mr-sm-4 mb-sm-0" id="where" type="text" name="where" placeholder="where"/>
+        <input class="form-control mb-4 mr-sm-4 mb-sm-0" id="performer" type="text" name="artist" placeholder="artist"/>
+        <input type="button" class="btn btn-primary" onclick="show_events()" value="Show Events" /> <br>
+      </form>
+    </div>
   </div>
-  <% }) %>
- </div> 
- <script src="../libs/js/eventful-api.js"></script>
- <script src="../libs/js/jquery-3.3.1.min.js"></script>
+  <div class="row" id="search-results">
+  </div>
+  <div class="row">
+    <div class="col">
+    <hr>
+      <h2 class="margin-top-30">Suggested Concerts near you!</h2>
+      <div class="row"  id="suggested-concerts">
+      <% events.forEach((event) => {%>
+      <div class="col-sm-6 col-md-4 concert-card">
+        <div class="card">
+          <div class="card-block">
+            <h5 class="card-title concert" data-id="<%= event.id %>">
+              <a href="/concerts/<%= event.id %>"><%= event.title %></a>
+            </h5>
+            <p class="card-text">
+              <%= event.start_time %>
+            </p>
+            <p class="card-text">
+              <%= event.venue_name %> - <%= event.city_name %>
+            </p>
+            <a href="/concerts/<%= event.id %>" class="btn btn-primary">View</a>
+          </div>
+        </div>
+        </div>
+        <% }) %>
+          
+      </div>
+      <div>
+      </div>
+    </div>
+  </div> 
+</div>
+<script src="../libs/js/eventful-api.js"></script>
+<script src="../libs/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../js/events.js"></script>
 
 

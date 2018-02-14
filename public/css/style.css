@@ -3,14 +3,16 @@ body {
   font-family: sans-serif;
 }
 
+h2 {
+  margin-bottom: 30px;
+}
+
 a {
   color: #00B7FF;
 }
 
 .concert-card{
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
 .top-container{
@@ -22,5 +24,26 @@ a {
   margin-bottom: 40px;
 }
 .profile-info table{
+  margin-top: 30px;
+}
+.btn:hover{
+  cursor: pointer;
+}
+.btn.btn-danger a,
+.btn.btn-danger a:hover{
+  color: #fff;
+  text-decoration: none;
+}
+.top-container.back-link{
+  padding-top: 13px;
+}
+.back-link .back{
+  margin-bottom: 16px;
+}
+.form-inline{
+  margin-bottom: 30px;
+}
+
+.margin-top-30{
   margin-top: 30px;
 }
