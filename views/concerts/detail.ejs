@@ -36,12 +36,23 @@
             <p class="card-text">
               <%= plan.planId.description %>
             </p>
+            <% if(assisting.length == 0){ %>
             <a href="/plans/<%= plan.planId._id %>/join" class="btn btn-success join-plan">
               <i class="fa fa-plus align-middle"></i> <span class="align-middle"> Join!</span>
             </a>
-            <a href="/plans/<%= plan.planId._id %>/leave" class="btn btn-danger leave-plan">
-              <i class="fa fa-minus align-middle"></i> <span class="align-middle"> Leave..</span>
-            </a>
+            <%} else{%>
+            <% assisting.forEach((assist) => {%>
+              <% if (assist.planId == plan.planId.id){ %>
+              <a href="/plans/<%= plan.planId._id %>/leave" class="btn btn-danger leave-plan">
+                <i class="fa fa-minus align-middle"></i> <span class="align-middle"> Leave..</span>
+              </a>
+              <%} else{%>
+              <a href="/plans/<%= plan.planId._id %>/join" class="btn btn-success join-plan">
+                <i class="fa fa-plus align-middle"></i> <span class="align-middle"> Join!</span>
+              </a>
+              <%}%>
+              <%})%>
+            <%}%>
             <a href="/plans/<%= plan.planId._id %>/detail" class="btn btn-primary">
             <i class="fa fa-search align-middle"></i> <span class="align-middle"> View</span>
             </a>

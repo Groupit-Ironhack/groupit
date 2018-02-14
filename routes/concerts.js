@@ -5,6 +5,7 @@ const onlyMe = require("../middlewares/onlyMe");
 const User = require("../models/User");
 const Plan = require("../models/Plan");
 const ConcertPlan = require("../models/Concert-Plan");
+const PlanUser = require("../models/Plan-User");
 const axios = require("axios");
 
 router.get("/", isLoggedIn, function(req, res, next) {
@@ -42,7 +43,11 @@ router.get("/:concertId", isLoggedIn, (req, res, next) => {
       event = response.data;
       ConcertPlan.find({concertId: concertId}).populate({path:"planId",populate: {path:'author'}})
       .then(plans => {
-         res.render("concerts/detail", { event, plans });
+        let userId = req.user.id;
+        PlanUser.find({"userId": userId}, {"planId":1, "_id": 0}).then((assisting)=>{
+            console.log(assisting)
+             res.render("concerts/detail", { event, plans, assisting });
+        })
 
       }).catch((error) => {
         console.log(error);
