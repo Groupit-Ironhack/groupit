@@ -42,7 +42,6 @@ router.get("/:concertId", isLoggedIn, (req, res, next) => {
       event = response.data;
       ConcertPlan.find({concertId: concertId}).populate({path:"planId",populate: {path:'author'}})
       .then(plans => {
-        plans.shift()
          res.render("concerts/detail", { event, plans });
 
       }).catch((error) => {

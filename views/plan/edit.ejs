@@ -1,27 +1,27 @@
 <!-- Pagina edicion plan (usuario creador) -->
-<%if(user._id == plan.author){ %>
+<% if(user.id == plan.author){ %>
 <h2>Edita tu plan!</h2>
-<form action="/plans/<%= concertId %>/edit" method="POST" id="form-container">
+<form action="/plans/<%= plan.id %>/edit" method="POST" id="form-container">
     <label for="description">Descripcion</label>
     <br>
-    <textarea id="description" name="description" placeholder="<%= plan.description%>"></textarea>
+    <textarea id="description" name="description"><%= plan.description %></textarea>
     <br>
     <br>
     <label for="location">Localizacion</label>
     <br>
-    <input id="location" type="text" name="location" placeholder="<%= plan.location %>">
+    <input id="location" type="text" name="location" value="<%= plan.locationId %>">
     <br>
     <br>
-    <input id="time" type="time" name="time" >
+    <input id="time" type="time" name="time" value="<%= plan.date %>" >
     <% if (typeof message !== "undefined") { %>
         <div class="error-message">
             <%= message %>
         </div>
         <% } %>
             <br>
-            <button>Crear Plan</button> <button>Editar Plan</button>
+            <button>Guardar cambios</button>
             <br>
 </form>
 <% }else{ %>
     <h1>NO PUEDES EDITAR UN PLAN CREADO POR OTRO USUARIO</h1>
-<%}%>
+<% } %>
