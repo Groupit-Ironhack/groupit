@@ -82,9 +82,7 @@ authRoutes.get('/profile/edit', (req, res, next) => {
 });
 
 authRoutes.post('/profile/edit', upload.single('imgUrl'),(req, res, next) => {
-  console.log("post")
   const userId  = req.user._id;
-  console.log(req.file.filename)
   const updates = {
     name: req.body.name,
     username: req.body.username,
