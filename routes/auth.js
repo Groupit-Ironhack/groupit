@@ -89,9 +89,11 @@ authRoutes.post('/profile/edit', upload.single('imgUrl'),(req, res, next) => {
     age: req.body.age,
     "address.country": req.body.address1,
     "address.city": req.body.address2,
-    imgUrl: `/uploads/${req.file.filename}`
+    
   };
-  
+  if(req.file){
+    updates.imgUrl = `/uploads/${req.file.filename}`;
+  }
   if (req.body.password != ""){
     const password = req.body.password;
     let salt = bcrypt.genSaltSync(bcryptSalt);
