@@ -7,6 +7,7 @@ const onlyMe = require('../middlewares/onlyMe')
 const multer  = require('multer');
 var upload = multer({ dest: './public/uploads/' });
 const bcryptSalt = 10;
+const PlanUser = require('../models/Plan-User');
 
 authRoutes.get("/signup", (req, res, next) => {
   res.render("auth/signup");
@@ -131,6 +132,20 @@ authRoutes.get('/profile/delete/:id',(req, res, next) => {
 authRoutes.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
+});
+
+
+authRoutes.get("/user/myplans", (req, res, next) => {
+  const userId = req.user;
+  
+  PlanUser.find({userId})
+  .populate({path:"planId",populate: {path:'author'}})
+  .then((plans)=>{
+    
+    res.render("user/myplans",{plans})
+  }).catch((error) => {
+    console.log(error);
+  });
 });
 
 module.exports = authRoutes;
