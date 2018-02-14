@@ -1,49 +1,51 @@
 <div class="container top-container">
-<div class="row">
+  <div class="row">
     <div class="col">
-<h1><%= event.title %></h1>
-<h3><%= event.venue_name %></h3>
-<p><%= event.latitude %></p>
-<p><%= event.longitude %></p>
-<h5><%= event.address %></h5> 
-<p><%= event.city %></p>
-<% if(event.performers == null){ %>
-<% }else{ %>
-<h3><%= event.performers.performer.short_bio %></h3>
-<% } %>
-<p><%= event.start_time%></p>
-
-</div>
-</div>
+      <h1><%= event.title %></h1>
+      <h3><%= event.venue_name %></h3>
+      <p><%= event.latitude %></p>
+      <p><%= event.longitude %></p>
+      <h5><%= event.address %></h5> 
+      <p><%= event.city %></p>
+      <% if(event.performers != null){ %>
+      <h3><%= event.performers.performer.short_bio %></h3>
+      <% } %>
+      <p><%= event.start_time%></p>
+    </div>
+  </div>
 <hr>
 
-<div class="row">
-<div class="col">
-<h2 class="margin-top-30">Plans for this concert</h2>
-<a href="/plans/<%= event.id%>/new" class="btn btn-success">Add Plan</a>
-      <div class="row"  id="suggested-concerts">
-      <% plans.forEach((plan) => {%>
-      <div class="col-6 concert-card">
+  <div class="row">
+    <div class="col">
+      <h2 class="margin-top-30">Plans for this concert</h2>
+      <a href="/plans/<%= event.id%>/new" class="btn btn-success">Add Plan</a>
+    </div>
+  </div>
+  <div class="row">
+
+    <% plans.forEach((plan) => {%>
+      <div class="col-xs-12 col-sm-6 concert-card">
         <div class="card">
           <div class="card-block">
-            <h5 class="card-title concert" data-id="<%= plan.planId.id %>">
+            <h5 class="card-title concert">
               <a href="/plans/<%= plan.planId._id %>/detail"><%= plan.planId.author.name %>'s Plan</a>
             </h5>
             <p class="card-text">
-               <%= plan.planId.locationId %>
+              <%= plan.planId.locationId %>
             </p>
             <p class="card-text">
               <%= plan.planId.description %>
             </p>
-            <a href="/plans/<%= plan.planId._id %>/detail" class="btn btn-primary">View</a>
+            <a href="/plans/<%= plan.planId._id %>/join" class="btn btn-success join-plan">
+              <i class="fa fa-plus align-middle"></i> <span class="align-middle"> Join!</span>
+            </a>
+            <a href="/plans/<%= plan.planId._id %>/detail" class="btn btn-primary">
+            <i class="fa fa-search align-middle"></i> <span class="align-middle"> View</span>
+            </a>
           </div>
         </div>
-        </div>
-        <% }) %>
+      </div>
+    <% }) %>
           
-      </div>
-      <div>
-      </div>
-    </div>
-  </div> 
-</div>
+  </div>
+<div>
