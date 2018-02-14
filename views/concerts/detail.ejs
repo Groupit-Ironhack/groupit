@@ -27,7 +27,7 @@
         <div class="card">
           <div class="card-block">
             <h5 class="card-title concert" data-id="<%= plan.planId.id %>">
-              <a href="/concerts/<%= plan.planId._id %>"><%= plan.planId.author.name %>'s Plan</a>
+              <a href="/plans/<%= plan.planId._id %>/detail"><%= plan.planId.author.name %>'s Plan</a>
             </h5>
             <p class="card-text">
                <%= plan.planId.locationId %>
@@ -35,7 +35,7 @@
             <p class="card-text">
               <%= plan.planId.description %>
             </p>
-            <a href="/concerts/<%= event.id %>" class="btn btn-primary">View</a>
+            <a href="/plans/<%= plan.planId._id %>/detail" class="btn btn-primary">View</a>
           </div>
         </div>
         </div>
