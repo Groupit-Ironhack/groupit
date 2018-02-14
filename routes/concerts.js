@@ -3,6 +3,7 @@ const router = express.Router();
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const onlyMe = require("../middlewares/onlyMe");
 const User = require("../models/User");
+const Plan = require("../models/Plan");
 const ConcertPlan = require("../models/Concert-Plan");
 const axios = require("axios");
 
@@ -30,17 +31,20 @@ router.get("/", isLoggedIn, function(req, res, next) {
 
 router.get("/:concertId", isLoggedIn, (req, res, next) => {
   const concertId = req.params.concertId;
+  let plans = [];
+  let event;
 
   axios
     .get(
       `http://api.eventful.com/json/events/get?app_key=KLN35NSPZJRVNwD3&category=music&id=${concertId}`
     )
     .then(function(response) {
-      ConcertPlan.find({concertId: concertId}).populate("planId").then(plans =>{
-        console.log(plans)
+      event = response.data;
+      ConcertPlan.find({concertId: concertId}).populate({path:"planId",populate: {path:'author'}})
+      .then(plans => {
         plans.shift()
-        let event = response.data;
-        res.render("concerts/detail", { event, plans });
+         res.render("concerts/detail", { event, plans });
+
       }).catch((error) => {
         console.log(error);
       });
