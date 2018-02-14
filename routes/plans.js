@@ -14,7 +14,7 @@ router.get("/:concertId/new", (req, res, next) => {
 router.post("/:concertId/new", (req, res, next) => {
   const author = req.user._id;
   const concertId = req.params.concertId;
-  const name = req.body.name;
+  const date = req.body.time
   const description = req.body.description;
   const locationId = req.body.location;
   // const date = new Date(req.body.date);
@@ -26,8 +26,8 @@ router.post("/:concertId/new", (req, res, next) => {
 
   const newPlan = new Plan({
     author,
-    name,
     description,
+    date,
     locationId
     // date
   });
@@ -57,6 +57,33 @@ router.post("/:concertId/new", (req, res, next) => {
       console.log(e);
       res.render("plan/new", { message: "Algo salió mal" });
     });
+});
+
+router.get('/:planId/detail', (req, res, next) => {
+  const planId  = req.params.planId;
+  const user = req.user;
+
+  Plan.findById(planId, (err, plan) => {
+    if (err) { return next(err); }
+    res.render("plan/detail", { plan,user })
+  });
+})
+
+router.post('/:planId/detail', (req, res, next) => {
+  // const concertId  = req.params.concertId;
+  const planId = req.params.planId;
+  const author = req.user._id
+  
+  const updatePlan = {
+    date : req.body.time,
+    description : req.body.description,
+    locationId : req.body.location,
+  };
+
+  Plan.findByIdAndUpdate(planId,updatePlan, (err, plan) => {
+    if (err) { return next(err); }
+    res.redirect('/plan/edit')
+  });
 });
 
 module.exports = router;

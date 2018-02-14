@@ -1,1 +1,8 @@
 <!-- Detalle de un plan especifico -->
+<h2><%= plan.description %></h2>
+<p><%= plan.locationId %></p>
+<p><%= plan.date %></p>
+
+<% if(user.id == plan.author){ %>
+    <a href="/plans/<%= plan._id%>/edit">Edit Plan</a>
+<% } %>
