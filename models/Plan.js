@@ -13,7 +13,7 @@ const planSchema =new Schema(
       concertId:String, 
       description: String,
       locationId: String,
-      date: Date,
+      date: String,
     },
     {
       timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
