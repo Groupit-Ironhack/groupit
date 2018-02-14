@@ -24,17 +24,18 @@
   <div class="row">
 
     <% for( let i = 0; i < plans.length; i++) {%>
-      <div class="col-xs-12 col-sm-6 concert-card">
+      <div class="col-xs-12 col-md-6 concert-card">
         <div class="card">
           <div class="card-block">
             <h5 class="card-title concert">
               <a href="/plans/<%= plans[i].planId._id %>/detail"><%= plans[i].planId.author.name %>'s Plan</a>
             </h5>
             <p class="card-text">
-              <%= plans[i].planId.locationId %>
-            </p>
-            <p class="card-text">
-              <%= plans[i].planId.description %>
+              <i class="fa fa-map-marker-alt"></i> <%= plans[i].planId.locationId %> -
+              <i class="fa fa-clock"></i> <%= plans[i].planId.date %>
+              </p>
+              <p class="card-text">
+              <i class="fa fa-hand-point-right"></i> <%= plans[i].planId.description %>
             </p>
             <% if (!going[i]){ %>
             <a href="/plans/<%= plans[i].planId._id %>/join" class="btn btn-success join-plan">
