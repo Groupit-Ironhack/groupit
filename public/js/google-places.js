@@ -6,7 +6,6 @@ $(window).keypress(function(event) {
 });
 
 function initMap() {
-  console.log(concertData)
   var concert = { lat: parseFloat(concertData.latitude), lng: parseFloat(concertData.longitude) };
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
@@ -17,7 +16,6 @@ function initMap() {
     map: map
   });
 
-  console.log("READY");
   var input = /** @type {!HTMLInputElement} */(
       document.getElementById('pac-input'));
   var types = document.getElementById('type-selector');
@@ -84,7 +82,14 @@ function initMap() {
   
   const getInfowindowData = () =>{
     setTimeout(function() {
-      console.log($(".poi-info-window").html())
+      let placeInfo = "";
+      placeInfo += $(".poi-info-window .title").html()
+
+      $(".poi-info-window .address-line").each((function() {
+       placeInfo += " " + $( this ).html();
+      }));
+
+      $("#pac-input").val(placeInfo)
     }, 1000);
   }
 
