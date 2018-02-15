@@ -74,7 +74,7 @@ router.post("/:concertId/new", (req, res, next) => {
 router.get("/:planId/detail", (req, res, next) => {
   const planId = req.params.planId;
   const user = req.user;
-
+  
   Plan.findById(planId, (err, plan) => {
     if (err) {
       return next(err);

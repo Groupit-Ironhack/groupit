@@ -1,22 +1,68 @@
 <!-- Detalle de un plan especifico -->
-
-
 <div class="container top-container">
   <div class="row">
-    <div class="col">
-    <h1>Local: <%= plan.locationId %></h1>
-    <p>Descripcion: <%= plan.description %></p>
-    <p>Hora: <%= plan.date %></p>
-    
-    <% if(user.id == plan.author){ %>
-        <a href="/plans/<%= plan._id%>/edit">Edit Plan</a> <br>
-        <a href="/plans/<%= plan._id %>/delete">Borrar Plan</a>
-    <% } %>
+      <div class="col col-lg-8 push-lg-2">
+          <h2>The plan!</h2>
+          <table class="table">
+          <tbody>
+              <tr>
+                <td>
+                  Location:
+                </td>
+                <td>
+                <p id="pac-input"><%= plan.locationId %></p>
+               </td>
+                </tr>
+                      <tr>
+                  <td colspan="2"> <div id="map"></div> </td>
+              </tr>
+              <tr>
+                  <td>Description: </td>
+                  <td>
+                      <p id="description"> <%= plan.description %></p>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Time: </td>
+                  <td>
+                      <p id="time"><%= plan.date %></p>
+                  </td>
+              </tr>
+              <tr>
+                  <td>People:</td> 
+                  <td>  
+                    <ul>
+                        <% assist.forEach(a =>{ %>
+                          <li>
+                            <a href="/profile/<%= a.userId._id %>"><%= a.userId.name %></a><br>
+                          </li>
+                        <% }) %>
+                    </ul>
+                    
+                  </td>
+              </tr>
+              <tr>   
+                <td colspan="2"> 
+                  <% if(user.id == plan.author){ %>
+                      <a class="btn btn-primary float-left" href="/plans/<%= plan._id%>/edit">Edit Plan</a>
+                      <a class="btn btn-danger float-right" href="/plans/<%= plan._id %>/delete">Borrar Plan</a>
+                  <% } %>
+                </td>
+              </tr>
+          </tbody>
+          </table>               
+              <% if (typeof message !== "undefined") { %>
+              <div class="error-message">
+                  <%= message %>
+              </div>
+              <% } %>
+              <hr>
+      </div>
   </div>
-</div>
-  <hr>   
-  <h1>Asistentes:</h1> 
-    <% assist.forEach(a =>{ %>
-      <a href="/profile/<%= a.userId._id %>"> <%= a.userId.name %></a><br>
-    <% }) %>
-</div>
+  </div>
+  <script>
+  const planData = <%- JSON.stringify(plan) %>
+</script>
+<script src="../../js/google-places.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz1pkGaOuTp9F8AYApYt_QHr3YusicTUA&libraries=places&callback=viewMap">
+</script>
