@@ -145,7 +145,6 @@ authRoutes.get("/user/myplans", (req, res, next) => {
   PlanUser.find({userId})
   .populate({path:"planId",populate: {path:'author'}})
   .then((plans)=>{
-    
     res.render("user/myplans",{plans})
   }).catch((error) => {
     console.log(error);

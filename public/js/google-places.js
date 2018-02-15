@@ -112,11 +112,12 @@ function initMap() {
       let placeInfo = "";
       placeInfo += $(".poi-info-window .title").html();
 
-      $(".poi-info-window .address-line").each(function() {
-        placeInfo += " " + $(this).html();
-      });
-
-      $("#pac-input").val(placeInfo);
+      $(".poi-info-window .address-line").each((function() {
+       placeInfo += " " + $( this ).html();
+      }));
+      if (placeInfo != "undefined"){
+        $("#pac-input").val(placeInfo)
+      }
     }, 1000);
   };
 
