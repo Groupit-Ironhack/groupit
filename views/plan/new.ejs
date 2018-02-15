@@ -1,24 +1,39 @@
-<!-- Pagina de creacion de un plan (only author)-->
-<h2>Crea un plan!</h2>
-
-<form action="/plans/<%= concertId %>/new" method="POST" id="form-container">
-    <label for="description">Descripcion</label>
-    <br>
-    <textarea id="description" name="description" placeholder="Descripcion breve del plan."></textarea>
-    <br>
-    <br>
-    <label for="location">Localizacion</label>
-    <br>
-    <input id="location" type="text" name="location" placeholder="Localizacion">
-    <br>
-    <br>
-    <input id="time" type="time" name="time" >
-    <% if (typeof message !== "undefined") { %>
-        <div class="error-message">
-            <%= message %>
+<div class="container top-container">
+    <div class="row">
+        <div class="col col-sm-8 push-sm-2">
+            <h2>Create a plan!</h2>
+            <form action="/plans/<%= concertId %>/new" method="POST" id="form-container">
+            <table class="table">
+            <tbody>
+                <tr>
+                    <td>Description: </td>
+                    <td>
+                        <textarea id="description" class="form-control" name="description" placeholder="Descripcion breve del plan."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Localization: </td>
+                    <td>
+                        <input id="location" class="form-control" type="text" name="location" placeholder="Localizacion">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Time: </td>
+                    <td>
+                        <input id="time" class="form-control" type="time" name="time" >
+                    </td>
+                </tr>
+            </tbody>
+            </table>               
+                <% if (typeof message !== "undefined") { %>
+                <div class="error-message">
+                    <%= message %>
+                </div>
+                <% } %>
+                <hr>
+                <a href="/concerts/<%= concertId %>" class="btn btn-primary float-left">Back</a>
+                <button class="btn btn-success float-right">Create Plan</button>
+            </form>
         </div>
-        <% } %>
-            <br>
-            <button>Crear Plan</button>
-            <br>
-</form>
+    </div>
+</div>

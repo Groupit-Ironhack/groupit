@@ -1,7 +1,4 @@
-<div class="container top-container back-link">
-    <div class="row">
-        <div class="col back"><a href="/profile"> < Back</a></div>
-    </div>
+<div class="container top-container">
     <form action="/profile/edit" method="POST" enctype="multipart/form-data">
         <div class="row">
             <div class="col col-sm-4 profile-img">
@@ -57,6 +54,7 @@
                     <a href="/profile/delete/<%= user.id %>">Delete Account</a>
                 </button>
                 <input class="btn btn-success float-right" type="submit" value="Save Changes"> 
+                <a class="btn btn-primary float-right margin-right-20" href="/profile"> Back</a>
             
             </div>
         </div>
