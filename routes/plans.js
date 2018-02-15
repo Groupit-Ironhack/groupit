@@ -6,10 +6,18 @@ const User = require("../models/User");
 const Plan = require("../models/Plan");
 const ConcertPlan = require("../models/Concert-Plan");
 const PlanUser = require("../models/Plan-User");
+const axios = require("axios");
 
 router.get("/:concertId/new", (req, res, next) => {
   const concertId = req.params.concertId;
-  res.render("plan/new", { concertId });
+  axios
+    .get(
+      `http://api.eventful.com/json/events/get?app_key=KLN35NSPZJRVNwD3&category=music&id=${concertId}`
+    )
+    .then(function(response) {
+      concert = response.data;
+      res.render("plan/new", { concertId, concert });
+    })
 });
 
 router.post("/:concertId/new", (req, res, next) => {

@@ -1,7 +1,8 @@
 function initMap() {
-  var uluru = { lat: -25.363, lng: 131.044 };
+  console.log(concertData)
+  var uluru = { lat: parseFloat(concertData.latitude), lng: parseFloat(concertData.longitude) };
   var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
+    zoom: 15,
     center: uluru
   });
   var marker = new google.maps.Marker({
@@ -72,13 +73,13 @@ function initMap() {
   });
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
-  function setupClickListener(id, types) {
-    var radioButton = document.getElementById(id);
-    radioButton.addEventListener("click", function() {
-      autocomplete.setTypes(types);
-    });
-  }
-  setupClickListener("changetype-all", []);
-  setupClickListener("changetype-address", ["address"]);
-  setupClickListener("changetype-establishment", ["establishment"]);
+  // function setupClickListener(id, types) {
+  //   var radioButton = document.getElementById(id);
+  //   radioButton.addEventListener("click", function() {
+  //     autocomplete.setTypes(types);
+  //   });
+  // }
+  // setupClickListener("changetype-all", []);
+  // setupClickListener("changetype-address", ["address"]);
+  // setupClickListener("changetype-establishment", ["establishment"]);
 };
