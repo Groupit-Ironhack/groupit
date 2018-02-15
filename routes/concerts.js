@@ -44,11 +44,22 @@ router.get("/:concertId", isLoggedIn, (req, res, next) => {
       ConcertPlan.find({concertId: concertId}).populate({path:"planId",populate: {path:'author'}})
       .then(plans => {
         let userId = req.user.id;
-        PlanUser.find({"userId": userId}, {"planId":1, "_id": 0}).then((assisting)=>{
-            console.log(assisting)
-             res.render("concerts/detail", { event, plans, assisting });
+        let going = []
+        PlanUser.find({"userId": req.user.id}, {"planId":1, "_id": 0}).then((assisting)=>{
+          let values = assisting.map(a =>{
+            return a.planId;
+          })
+          plans.forEach(p =>{
+            let go = false
+            values.forEach(v =>{
+              if (v.equals(p.planId._id)){
+                go = true;
+              }
+            })
+            going.push(go)
+          })
+            res.render("concerts/detail", { event, plans, going });
         })
-
       }).catch((error) => {
         console.log(error);
       });
