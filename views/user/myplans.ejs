@@ -1,5 +1,6 @@
-<h1>HOLA</h1>
-<div class="row">
+<div class="container top-container">
+  <h1>My Plans</h1>
+  <div class="row">
 
     <% plans.forEach((plan) => {%>
       <div class="col-xs-12 col-sm-6 concert-card">
@@ -9,13 +10,14 @@
               <a href="/plans/<%= plan.planId._id %>/detail"><%= plan.planId.author.name %>'s Plan</a>
             </h5>
             <p class="card-text">
-              <%= plan.planId.locationId %>
+              <i class="fa fa-map-marker-alt"></i> <%= plan.planId.locationId %> -
+              <i class="fa fa-clock"></i> <%= plan.planId.date %>
             </p>
             <p class="card-text">
-              <%= plan.planId.description %>
+            <i class="fa fa-hand-point-right"></i> <%= plan.planId.description %>
             </p>
-            <a href="/plans/<%= plan.planId._id %>/join" class="btn btn-success join-plan">
-              <i class="fa fa-plus align-middle"></i> <span class="align-middle"> Join!</span>
+            <a href="/plans/<%= plan.planId._id %>/leave" class="btn btn-danger leave-plan">
+              <i class="fa fa-minus align-middle"></i> <span class="align-middle"> Leave...</span>
             </a>
             <a href="/plans/<%= plan.planId._id %>/detail" class="btn btn-primary">
             <i class="fa fa-search align-middle"></i> <span class="align-middle"> View</span>
@@ -23,6 +25,6 @@
           </div>
         </div>
       </div>
-    <% }) %>
-          
+    <% }) %>         
   </div>
+</div>
