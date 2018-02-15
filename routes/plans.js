@@ -15,7 +15,7 @@ router.get("/:concertId/new", (req, res, next) => {
 router.post("/:concertId/new", (req, res, next) => {
   const author = req.user._id;
   const concertId = req.params.concertId;
-  const date = req.body.time
+  const date = req.body.time;
   const description = req.body.description;
   const locationId = req.body.location;
   // const date = new Date(req.body.date);
@@ -52,7 +52,7 @@ router.post("/:concertId/new", (req, res, next) => {
 
           res.render("plan/new", { message: "Algo salió mal" });
           return;
-      });
+        });
     })
     .catch(e => {
       console.log(e);
@@ -60,57 +60,77 @@ router.post("/:concertId/new", (req, res, next) => {
     });
 });
 
-router.get('/:planId/detail', (req, res, next) => {
-  const planId  = req.params.planId;
+router.get("/:planId/detail", (req, res, next) => {
+  const planId = req.params.planId;
   const user = req.user;
 
   Plan.findById(planId, (err, plan) => {
-    if (err) { return next(err); }
-    res.render("plan/detail", { plan,user })
+    if (err) {
+      return next(err);
+    }
+
+    PlanUser.find({ planId })
+      .populate({ path: "userId" })
+      .then(assist => {
+        console.log(assist);
+        res.render("plan/detail", { plan, user, assist });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   });
-})
+});
 
-
-router.get('/:planId/edit', (req, res, next) => {
-  const planId  = req.params.planId;
+router.get("/:planId/edit", (req, res, next) => {
+  const planId = req.params.planId;
   const user = req.user;
 
   Plan.findById(planId, (err, plan) => {
-    if (err) { return next(err); }
-    res.render("plan/edit", { plan,user })
+    if (err) {
+      return next(err);
+    }
+    res.render("plan/edit", { plan, user });
   });
-})
+});
 
-router.post('/:planId/edit', (req, res, next) => {
-  const planId  = req.params.planId;
+router.post("/:planId/edit", (req, res, next) => {
+  const planId = req.params.planId;
   const user = req.user;
 
   const updatePlan = {
-    date : req.body.time,
-    description : req.body.description,
-    locationId : req.body.location,
+    date: req.body.time,
+    description: req.body.description,
+    locationId: req.body.location
   };
 
-  Plan.findByIdAndUpdate(planId,updatePlan, (err, plan) => {
-    if (err) { return next(err); }
-    res.redirect(`/plans/${planId}/detail`)
+  Plan.findByIdAndUpdate(planId, updatePlan, (err, plan) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect(`/plans/${planId}/detail`);
   });
-})
+});
 
-router.get('/:planId/delete',(req, res, next) => {
-  const planId  = req.params.planId;
+router.get("/:planId/delete", (req, res, next) => {
+  const planId = req.params.planId;
 
-  ConcertPlan.deleteOne({'planId':planId}, (err) => {
-    if (err) { return next(err); }
+  ConcertPlan.deleteOne({ planId: planId }, err => {
+    if (err) {
+      return next(err);
+    }
   });
 
-  PlanUser.deleteOne({'planId':planId}, (err) => {
-    if (err) { return next(err); }
+  PlanUser.deleteOne({ planId: planId }, err => {
+    if (err) {
+      return next(err);
+    }
   });
 
-  Plan.deleteOne({_id:planId}, (err) => {
-    if (err) { return next(err); }
-    res.redirect('/concerts');
+  Plan.deleteOne({ _id: planId }, err => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/concerts");
   });
 });
 

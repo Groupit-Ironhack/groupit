@@ -13,5 +13,10 @@
         <a href="/plans/<%= plan._id %>/delete">Borrar Plan</a>
     <% } %>
   </div>
-  <hr>    
+</div>
+  <hr>   
+  <h1>Asistentes:</h1> 
+    <% assist.forEach(a =>{ %>
+      <a href="/profile/<%= a.userId._id %>"> <%= a.userId.name %></a><br>
+    <% }) %>
 </div>
