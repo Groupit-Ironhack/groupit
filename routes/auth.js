@@ -3,7 +3,8 @@ const authRoutes = express.Router();
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const User = require("../models/User");
-const onlyMe = require('../middlewares/onlyMe')
+const isLoggedIn = require("../middlewares/isLoggedIn");
+const onlyMe = require('../middlewares/onlyMe');
 const multer  = require('multer');
 var upload = multer({ dest: './public/uploads/' });
 const bcryptSalt = 10;
@@ -113,16 +114,17 @@ authRoutes.get('/profile', (req, res, next) => {
   res.redirect(`/profile/${userId}`)
 });
 
-authRoutes.get('/profile/:id', (req, res, next) => {
+authRoutes.get('/profile/:id', isLoggedIn, (req, res, next) => {
   const userId  = req.params.id;
+  const loggedId  = req.user._id;
 
   User.findById(userId, (err, user) => {
     if (err) { return next(err); }
-    res.render('user/profile', { user: user });
+    res.render('user/profile', { user: user , loggedId});
   });
 });
 
-authRoutes.get('/profile/delete/:id',(req, res, next) => {
+authRoutes.get('/profile/delete/:id',onlyMe,(req, res, next) => {
   const userId  = req.user._id;
 
   User.deleteOne({_id:userId}, (err) => {
