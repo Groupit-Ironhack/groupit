@@ -88,8 +88,9 @@ function initMap() {
       $(".poi-info-window .address-line").each((function() {
        placeInfo += " " + $( this ).html();
       }));
-
-      $("#pac-input").val(placeInfo)
+      if (placeInfo != "undefined"){
+        $("#pac-input").val(placeInfo)
+      }
     }, 1000);
   }
 
