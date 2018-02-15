@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col col-lg-8 push-lg-2">
         <% if(user.id == plan.author){ %>
-            <h2>Create a plan!</h2>
+            <h2>Edit plan!</h2>
                
             <form action="/plans/<%= plan.id %>/edit" method="POST" id="form-container">
             <table class="table">
@@ -47,9 +47,9 @@
     </div>
     </div>
 <script> 
-    const concertData = <%- JSON.stringify(concert) %>
+    const planData = <%- JSON.stringify(plan) %>
 </script>
 <script src="../../js/google-places.js"></script>
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz1pkGaOuTp9F8AYApYt_QHr3YusicTUA&libraries=places&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz1pkGaOuTp9F8AYApYt_QHr3YusicTUA&libraries=places&callback=viewMap">
 </script>

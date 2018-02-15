@@ -27,6 +27,22 @@ function viewMap() {
   });
   var geocoder = new google.maps.Geocoder();
   geocodeAddress(geocoder, map);
+
+  const getInfowindowData = () => {
+    setTimeout(function() {
+      let placeInfo = "";
+      placeInfo += $(".poi-info-window .title").html();
+
+      $(".poi-info-window .address-line").each((function() {
+       placeInfo += " " + $( this ).html();
+      }));
+      if (placeInfo != "undefined"){
+        $("#pac-input").val(placeInfo)
+      }
+    }, 1000);
+  };
+
+  $("#map").on("click", getInfowindowData);
 }
 
 function initMap() {
