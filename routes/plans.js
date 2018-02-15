@@ -33,16 +33,19 @@ router.post("/:concertId/new", (req, res, next) => {
     // date
   });
 
-  newPlan
-    .save()
+  newPlan.save()
     .then(plan => {
       console.log("Plan creado en la base de datos");
       const newPlanConcert = new ConcertPlan({
         concertId,
         planId: plan._id
       });
-      newPlanConcert
-        .save()
+      const newPlanUser = new PlanUser({
+        planId: plan._id,
+        userId: author
+      })
+      newPlanUser.save();
+      newPlanConcert.save()
         .then(e => {
           console.log("Plan asociado a concierto");
           res.redirect(`/concerts/${concertId}`);
