@@ -1,12 +1,19 @@
+$(window).keypress(function(event) {
+  if (event.keyCode == '13') {
+     event.preventDefault();
+     return false;
+   }
+});
+
 function initMap() {
   console.log(concertData)
-  var uluru = { lat: parseFloat(concertData.latitude), lng: parseFloat(concertData.longitude) };
+  var concert = { lat: parseFloat(concertData.latitude), lng: parseFloat(concertData.longitude) };
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
-    center: uluru
+    center: concert
   });
   var marker = new google.maps.Marker({
-    position: uluru,
+    position: concert,
     map: map
   });
 
@@ -14,7 +21,7 @@ function initMap() {
   var input = /** @type {!HTMLInputElement} */(
       document.getElementById('pac-input'));
   var types = document.getElementById('type-selector');
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  //  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
     
   var autocomplete = new google.maps.places.Autocomplete(input);
@@ -39,7 +46,7 @@ function initMap() {
       map.fitBounds(place.geometry.viewport);
     } else {
       map.setCenter(place.geometry.location);
-      map.setZoom(17); // Why 17? Because it looks good.
+      map.setZoom(15); 
     }
     marker.setIcon(
       /** @type {google.maps.Icon} */ ({
@@ -70,16 +77,17 @@ function initMap() {
       "<div><strong>" + place.name + "</strong><br>" + address
     );
     infowindow.open(map, marker);
+    
   });
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
-  // function setupClickListener(id, types) {
-  //   var radioButton = document.getElementById(id);
-  //   radioButton.addEventListener("click", function() {
-  //     autocomplete.setTypes(types);
-  //   });
-  // }
-  // setupClickListener("changetype-all", []);
-  // setupClickListener("changetype-address", ["address"]);
-  // setupClickListener("changetype-establishment", ["establishment"]);
+
+  var service = new google.maps.places.PlacesService(map);
+  
+  const getInfowindowData = () =>{
+    setTimeout(function() {
+      console.log($(".poi-info-window").html())
+    }, 1000);
+  }
+
+  $("#map").on("click", getInfowindowData);
+
 };

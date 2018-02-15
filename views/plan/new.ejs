@@ -9,16 +9,12 @@
             <tbody>
                 <tr>
                     <td colspan="2">
-                    Location:
-                    <div id="map"></div>
-                    <input id="pac-input" class="controls form-control" type="text" name="location" placeholder="Location">
-                            <div id="type-selector" class="controls">
-                                <input type="radio" name="type" id="changetype-establishment" checked="checked">
-                                <label for="changetype-establishment">Establishments</label>
-                                <input type="radio" name="type" id="changetype-address">
-                                <label for="changetype-address">Addresses</label>
-                            </div>
+                        Location:
+                        <input id="pac-input" class="controls form-control" type="text" name="location" placeholder="Location">
+                        </tr>
+                        <tr>
                     </td>
+                    <td colspan="2"> <div id="map"></div> </td>
                 </tr>
                 <tr>
                     <td>Description: </td>
@@ -41,7 +37,7 @@
                 <% } %>
                 <hr>
                 <a href="/concerts/<%= concertId %>" class="btn btn-primary float-left">Back</a>
-                <button class="btn btn-success float-right">Create Plan</button>
+                <button is="create" class="btn btn-success float-right">Create Plan</button>
             </form>
         </div>
     </div>
