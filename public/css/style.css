@@ -3,6 +3,10 @@ body {
   font-family: sans-serif;
 }
 
+h3{
+  color: #0275d8;
+}
+
 h2 {
   margin-bottom: 30px;
 }
@@ -50,4 +54,15 @@ a {
 #map{ 
   width: 100%;
   height: 300px;
+}
+
+.card-block .fa{
+  color: #00B7FF;
+  margin-right: 5px;
+}
+.btn .fa{
+  color: #fff;
+}
+.concert-detail img{
+  width: 100%;
 }

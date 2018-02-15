@@ -1,16 +1,24 @@
 <div class="container top-container">
-  <div class="row">
-    <div class="col">
-      <h1><%= event.title %></h1>
-      <h3><%= event.venue_name %></h3>
-      <p><%= event.latitude %></p>
-      <p><%= event.longitude %></p>
-      <h5><%= event.address %></h5> 
-      <p><%= event.city %></p>
+  <div class="row concert-detail">
+    
+    <div class="col-xs-12 col-md-4">
+    <% if(event.images != null){ %>
+      <img src="<%= event.images.image[0].medium.url %>" alt="">
+    <% } else{ %>
+      <img src="../img/party.jpg" alt="">
+    <% } %>
+    </div>
+    <div class="col-xs-12 col-md-8">
+      <h3><i class="fa fa-microphone"></i> <%= event.title %></h3> 
       <% if(event.performers != null){ %>
-      <h3><%= event.performers.performer.short_bio %></h3>
+      <h4><%= event.performers.performer.short_bio %></h4>
       <% } %>
-      <p><%= event.start_time%></p>
+      <br>
+      <h5> <i class="fa fa-calendar-alt"> </i> <%= event.start_time%></h5>
+      <br>
+      <h5><i class="fa fa-map-marker-alt"></i> <%= event.city %> - <%= event.venue_name %></h5>
+      <h6><%= event.address %></h6> 
+      <p></p>
     </div>
   </div>
 <hr>
@@ -31,7 +39,7 @@
               <a href="/plans/<%= plans[i].planId._id %>/detail"><%= plans[i].planId.author.name %>'s Plan</a>
             </h5>
             <p class="card-text">
-              <i class="fa fa-map-marker-alt"></i> <%= plans[i].planId.locationId %> -
+              <i class="fa fa-map-marker-alt"></i> <%= plans[i].planId.locationId %><br>
               <i class="fa fa-clock"></i> <%= plans[i].planId.date %>
               </p>
               <p class="card-text">
