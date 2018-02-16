@@ -7,7 +7,7 @@ const printConcert = (concert) => {
   h5.append(a)
   let loc = $("<p>").text(`${concert.venue_name} - ${concert.city_name}`);
   let date = $("<p>").text(concert.start_time);
-  let btn = $("<a>").attr("href",`/concerts/${concert.id}`).addClass("btn btn-primary").text("View")
+  let btn = $("<a>").attr("href",`/concerts/${concert.id}`).addClass("btn btn-info").html("<i class='fa fa-search'></i> View")
   div.append(h5).append(loc).append(date).append(btn);
   subDiv.append(div);
   mainDiv.append(subDiv)
