@@ -32,14 +32,12 @@
                 </tr>
             </tbody>
             </table>               
-                <% if (typeof message !== "undefined") { %>
-                <div class="error-message">
-                    <%= message %>
-                </div>
-                <% } %>
-                <hr>
-                <button id="create" class="btn btn-success float-right">Save Plan</button>
-            </form>
+            <div class="d-none alert alert-danger">
+                <span>You must fill all the inputs!</span>
+            </div>
+            <hr>
+            <button id="create" class="btn btn-success float-right">Save Plan</button>
+        </form>
         <% }else{ %>
             <h1>YOU CAN'T EDIT A PLAN CREATED BY ANOTHER USER</h1>
         <% } %>
@@ -50,6 +48,7 @@
     const planData = <%- JSON.stringify(plan) %>
 </script>
 <script src="../../js/google-places.js"></script>
+<script src="../../js/validations.js"></script>
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz1pkGaOuTp9F8AYApYt_QHr3YusicTUA&libraries=places&callback=viewMap">
 </script>
