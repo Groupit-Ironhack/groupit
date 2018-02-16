@@ -29,10 +29,10 @@
                 <a href="/concerts/<%= event.id %>"><%= event.title %></a>
               </h5>
               <p class="card-text">
-                <%= event.start_time %>
+              <i class="fa fa-calendar-alt"></i> <%= event.start_time %>
               </p>
               <p class="card-text">
-                <%= event.venue_name %> - <%= event.city_name %>
+                <i class="fa fa-map-marker-alt"></i><%= event.venue_name %> - <%= event.city_name %>
               </p>
               <a href="/concerts/<%= event.id %>" class="btn btn-primary">View</a>
             </div>
