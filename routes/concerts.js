@@ -60,6 +60,7 @@ router.get("/:concertId", isLoggedIn, (req, res, next) => {
             })
             going.push(go)
           })
+           console.log(event.images.image)
             res.render("concerts/detail", { event, plans, going });
         })
       }).catch((error) => {

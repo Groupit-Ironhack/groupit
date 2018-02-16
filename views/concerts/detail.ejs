@@ -1,14 +1,17 @@
-<div class="container top-container">
-  <div class="row concert-detail">
-    
-    <div class="col-xs-12 col-md-4">
-    <% if(event.images != null){ %>
-      <img src="<%= event.images.image[0].medium.url %>" alt="">
-    <% } else{ %>
-      <img src="../img/party.jpg" alt="">
-    <% } %>
+<div class="container">
+  <div class="row ">
+    <div class="col concert-detail">
+      <% if(event.images != null && Array.isArray( event.images.image) ){ %>
+        <div class="concert-img" style="background-image: url(<%= event.images.image[0].medium.url %>)" alt=""></div>
+      <% } else if(event.images != null && typeof event.images.image == "object" ){%>
+        <div class="concert-img" style="background-image: url(<%= event.images.image.medium.url %>)" alt=""></div>
+      <% } else{ %>
+      <div class="concert-img" style="background-image: url('../img/party.jpg')" alt="">
+      <% } %>
     </div>
-    <div class="col-xs-12 col-md-8">
+    </div>
+  <div class="row top-container">
+    <div class="col-xs-12 col-md-6">
       <h3><i class="fa fa-microphone"></i> <%= event.title %></h3> 
       <% if(event.performers != null){ %>
       <h4><%= event.performers.performer.short_bio %></h4>
@@ -18,10 +21,12 @@
       <br>
       <h5><i class="fa fa-map-marker-alt"></i> <%= event.city %> - <%= event.venue_name %></h5>
       <h6><%= event.address %></h6> 
-      <p></p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div id="map"></div>
     </div>
   </div>
-<hr>
+  <hr>
 
   <div class="row">
     <div class="col">
@@ -61,6 +66,12 @@
         </div>
       </div>
     <% }%>
-          
   </div>
 <div>
+<script>
+  const concertData = <%- JSON.stringify(event) %>
+</script>
+<script src="../../js/google-places.js"></script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz1pkGaOuTp9F8AYApYt_QHr3YusicTUA&libraries=places&callback=viewConcert">
+</script>
