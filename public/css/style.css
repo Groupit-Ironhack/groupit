@@ -81,3 +81,13 @@ a {
 .error-message{
   color:red;
 }
+.bg-faded{
+  background-color: #5bc0de;
+}
+.navbar-light .navbar-brand, 
+.navbar-light .navbar-nav .nav-link{
+  color: #fff;
+}
+.navbar-brand img{
+  width: 40px;
+}
