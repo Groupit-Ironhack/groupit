@@ -91,3 +91,12 @@ a {
 .navbar-brand img{
   width: 40px;
 }
+.footer{
+  background-color: rgb(25, 30, 36);
+  margin-top: 50px;
+  height: 70px;
+  line-height: 70px;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
