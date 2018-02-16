@@ -2,7 +2,7 @@
 <div class="container top-container">
   <div class="row">
       <div class="col col-lg-8 push-lg-2">
-          <h2>The plan!</h2>
+          <h2><%= plan.author.name %>'s plan!</h2>
           <table class="table">
           <tbody>
               <tr>
@@ -37,18 +37,28 @@
                             <a href="/profile/<%= a.userId._id %>"><%= a.userId.name %></a><br>
                           </li>
                         <% }) %>
-                    </ul>
-                    
+                    </ul>   
                   </td>
               </tr>
               <tr>   
-                <td colspan="2"> 
-                  <% if(user.id == plan.author){ %>
-                      <a class="btn btn-primary float-left" href="/plans/<%= plan._id%>/edit">Edit Plan</a>
-                      <a class="btn btn-danger float-right" href="/plans/<%= plan._id %>/delete">Borrar Plan</a>
-                  <% } %>
+                  <td colspan="2"> 
+                      <% if(user.id == plan.author){ %>
+                        <a class="btn btn-primary float-left" href="/plans/<%= plan._id%>/edit">Edit Plan</a>
+                        <a class="btn btn-danger float-right" href="/plans/<%= plan._id %>/delete">Borrar Plan</a>
+                    </tr>
+                    <% } %>
                 </td>
-              </tr>
+                <td>
+                <% if (going){ %>
+                    <a href="/plans/<%= plan._id%>/leave" class="btn btn-danger leave-plan">
+                        <i class="fa fa-minus align-middle"></i> <span class="align-middle"> Leave..</span>
+                    </a>
+                    <% } else{%>
+                        <a href="/plans/<%= plan._id %>/join" class="btn btn-success join-plan">
+                        <i class="fa fa-plus align-middle"></i> <span class="align-middle"> Join!</span>
+                        </a>
+                    <%}%>
+                </td>
           </tbody>
           </table>               
               <% if (typeof message !== "undefined") { %>
