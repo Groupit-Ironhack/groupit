@@ -56,7 +56,6 @@
                       <% if(user.id == plan.author._id){ %>
                         <a class="btn btn-primary float-left" href="/plans/<%= plan._id%>/edit">Edit Plan</a>
                         <a class="btn btn-danger float-right" href="/plans/<%= plan._id %>/delete">Borrar Plan</a>
-                    </tr>
                     <% } %>
                 </td>
           </tbody>
@@ -66,7 +65,7 @@
                   <%= message %>
               </div>
               <% } %>
-              <hr>
+              
       </div>
   </div>
 </div>
