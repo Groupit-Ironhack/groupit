@@ -6,7 +6,7 @@ const User = require("../models/User");
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const onlyMe = require('../middlewares/onlyMe');
 const multer  = require('multer');
-var upload = multer({ dest: './public/uploads/' });
+const upload = multer({ dest: './public/uploads/' });
 const bcryptSalt = 10;
 const PlanUser = require('../models/Plan-User');
 
@@ -25,20 +25,20 @@ authRoutes.post("/signup", (req, res, next) => {
   console.log(age)
 
   if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indique usuario y contraseña" });
+    res.render("auth/signup", { message: "You must enter username and password" });
     return;
   }
   else if(!( age > 18 && age<100 ) ) {
-    res.render("auth/signup", { message: "La edad debe estar comprendida entre 18 y 110 años!" });
+    res.render("auth/signup", { message: "The age must be between 18 and 110 years(for your own safety)" });
     return;
   }else if(city === ""){
-    res.render("auth/signup", { message: "Indique una ciudad" });
+    res.render("auth/signup", { message: "You must enter the city" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "El usuario especificado ya existe" });
+      res.render("auth/signup", { message: "The username specify already exist" });
       return;
     }
 
@@ -56,7 +56,7 @@ authRoutes.post("/signup", (req, res, next) => {
 
     newUser.save(err => {
       if (err) {
-        res.render("auth/signup", { message: "Algo salió mal" });
+        res.render("auth/signup", { message: "UPS!Something whent wrong!" });
       } else {
         res.redirect("/");
       }

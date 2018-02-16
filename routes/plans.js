@@ -75,21 +75,23 @@ router.get("/:planId/detail", (req, res, next) => {
   const planId = req.params.planId;
   const user = req.user;
   
-  Plan.findById(planId, (err, plan) => {
-    if (err) {
-      return next(err);
-    }
-
-    PlanUser.find({ planId })
-      .populate({ path: "userId" })
-      .then(assist => {
-        console.log(assist);
-        res.render("plan/detail", { plan, user, assist });
-      })
-      .catch(error => {
-        console.log(error);
+  Plan.findById(planId).populate({ path: "author" }).then(plan =>{
+        PlanUser.find({ planId })
+          .populate({ path: "userId" })
+          .then(assist => {
+            let going= false;
+           assist.forEach(a =>{
+            if(a.userId._id == user.id){
+              going = true;
+            }
+           })
+           console.log(user)
+            res.render("plan/detail", { going,plan, user, assist });
+          })
+          .catch(error => {
+            console.log(error);
+          });
       });
-  });
 });
 
 router.get("/:planId/edit", (req, res, next) => {
