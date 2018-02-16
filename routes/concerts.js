@@ -10,18 +10,20 @@ const axios = require("axios");
 
 router.get("/", isLoggedIn, function(req, res, next) {
   const userId = req.user._id;
-  //User.findById(userId,{"adress.city":1,'_id': 0})
   User.findById(userId)
     .then(user => {
       let city = user.address.city;
-
       axios
         .get(
           `http://api.eventful.com/json/events/search?app_key=KLN35NSPZJRVNwD3&q=music&location=${city}&page_size=6&sort_order=popularity`
         )
         .then(function(response) {
-          let events = response.data.events.event;
-          res.render("concerts/index", { events });
+          if(!response.data.events){
+            res.render("concerts/index", { message: "There are no concerts in your area yet :(" })
+          } else {
+            let events = response.data.events.event;
+            res.render("concerts/index", { events });
+          }
         })
         .catch(function(error) {
           console.log(error);

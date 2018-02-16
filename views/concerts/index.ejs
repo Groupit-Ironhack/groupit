@@ -16,29 +16,30 @@
     <hr>
       <h2 class="margin-top-30">Suggested Concerts near you!</h2>
       <div class="row"  id="suggested-concerts">
-      <% events.forEach((event) => {%>
-      <div class="col-sm-6 col-md-4 concert-card">
-        <div class="card">
-          <div class="card-block">
-            <h5 class="card-title concert" data-id="<%= event.id %>">
-              <a href="/concerts/<%= event.id %>"><%= event.title %></a>
-            </h5>
-            <p class="card-text">
-              <%= event.start_time %>
-            </p>
-            <p class="card-text">
-              <%= event.venue_name %> - <%= event.city_name %>
-            </p>
-            <a href="/concerts/<%= event.id %>" class="btn btn-primary">View</a>
-          </div>
+      <% if (typeof message !== "undefined") { %>
+        <div class="alert alert-danger">
+          <%= message %>
         </div>
-        </div>
-        <% }) %>
-        <% if (typeof message !== "undefined") { %>
-          <div class="alert alert-danger">
-            <%= message %>
+      <% } else { %>   
+        <% events.forEach((event) => {%>
+        <div class="col-sm-6 col-md-4 concert-card">
+          <div class="card">
+            <div class="card-block">
+              <h5 class="card-title concert" data-id="<%= event.id %>">
+                <a href="/concerts/<%= event.id %>"><%= event.title %></a>
+              </h5>
+              <p class="card-text">
+                <%= event.start_time %>
+              </p>
+              <p class="card-text">
+                <%= event.venue_name %> - <%= event.city_name %>
+              </p>
+              <a href="/concerts/<%= event.id %>" class="btn btn-primary">View</a>
+            </div>
           </div>
-        <% } %>    
+          </div>
+          <% }) %> 
+        <% } %> 
       </div>
       <div>
       </div>
