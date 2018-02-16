@@ -33,6 +33,7 @@ authRoutes.post("/signup", (req, res, next) => {
     return;
   }else if(city === ""){
     res.render("auth/signup", { message: "You must enter the city" });
+
     return;
   }
 

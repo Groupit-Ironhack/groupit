@@ -45,6 +45,21 @@ function viewMap() {
   $("#map").on("click", getInfowindowData);
 }
 
+function viewConcert(){
+  var concert = {
+    lat: parseFloat(concertData.latitude),
+    lng: parseFloat(concertData.longitude)
+  };
+  var map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: concert
+  });
+  var marker = new google.maps.Marker({
+    position: concert,
+    map: map
+  });
+}
+
 function initMap() {
   var concert = {
     lat: parseFloat(concertData.latitude),
@@ -63,7 +78,6 @@ function initMap() {
     "pac-input"
   ));
   var types = document.getElementById("type-selector");
-  //  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 
   var autocomplete = new google.maps.places.Autocomplete(input);
