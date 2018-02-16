@@ -103,3 +103,17 @@ a {
 .container{
   min-height: calc(100vh - 174px)
 }
+.concert-card .card{
+  height: 100%;
+}
+.concert-card .card-block{
+ padding-bottom: 60px;
+}
+.concert-card .card .btn-primary{
+  position: absolute;
+  bottom: 20px;
+}
+.btn{
+  min-width: 100px;
+  text-align: center;
+}
