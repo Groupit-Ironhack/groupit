@@ -1,12 +1,16 @@
 <div class="container">
   <div class="row ">
     <div class="col concert-detail">
-      <% if(event.images != null && Array.isArray( event.images.image) ){ %>
-        <div class="concert-img" style="background-image: url(<%= event.images.image[0].medium.url %>)" alt=""></div>
-      <% } else if(event.images != null && typeof event.images.image == "object" ){%>
-        <div class="concert-img" style="background-image: url(<%= event.images.image.medium.url %>)" alt=""></div>
-      <% } else{ %>
-      <div class="concert-img" style="background-image: url('../img/party.jpg')" alt="">
+      <% if (event.images == null) { %>
+       <div class="concert-img" style="background-image: url('../img/party.jpg')" alt=""></div>
+      <% } else { %>
+        <% if(event.images != null && Array.isArray( event.images.image) ){ %>
+          <div class="concert-img" style="background-image: url(<%= event.images.image[0].medium.url %>)" alt=""></div>
+        <% } else if(event.images != null && typeof event.images.image == "object" ){%>
+          <div class="concert-img" style="background-image: url(<%= event.images.image.medium.url %>)" alt=""></div>
+        <% } else { %>
+        <div class="concert-img" style="background-image: url('../img/party.jpg')" alt=""></div>
+        <% } %>
       <% } %>
     </div>
   </div>

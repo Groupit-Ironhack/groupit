@@ -32,11 +32,10 @@
                 </tr>
             </tbody>
             </table>               
-                <% if (typeof message !== "undefined") { %>
-                <div class="error-message">
-                    <%= message %>
+                
+                <div class="d-none alert alert-danger">
+                   <span>You must fill all the inputs!</span>
                 </div>
-                <% } %>
                 <hr>
                 <a href="/concerts/<%= concertId %>" class="btn btn-primary float-left">Back</a>
                 <button id="create" class="btn btn-success float-right">Create Plan</button>
@@ -48,6 +47,7 @@
     const concertData = <%- JSON.stringify(concert) %>
   </script>
   <script src="../../js/google-places.js"></script>
+  <script src="../../js/validations.js"></script>
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz1pkGaOuTp9F8AYApYt_QHr3YusicTUA&libraries=places&callback=initMap">
   </script>

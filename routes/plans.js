@@ -28,11 +28,6 @@ router.post("/:concertId/new", (req, res, next) => {
   const locationId = req.body.location;
   // const date = new Date(req.body.date);
 
-  if (locationId == "") {
-    res.render("plan/new", { message: "Indique Local y localizacion" });
-    return;
-  }
-
   const newPlan = new Plan({
     author,
     description,
