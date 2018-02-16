@@ -86,7 +86,7 @@ a {
 }
 .bg-faded{
   background-color: #5bc0de;
-  box-shadow: 0px -6px 15px 10px rgba(0,0,0,0.5);
+  box-shadow: 0px -6px 15px 10px rgba(0,0,0,0.4);
   position: fixed;
   top: 0;
   left: 0;
