@@ -13,6 +13,10 @@ const printConcert = (concert) => {
   mainDiv.append(subDiv)
   $("#search-results").append(mainDiv);
 };
+const printError = (message) => {
+  let error = $("<div>").addClass("alert alert-danger").html(message)
+  $("#search-results").append(error)
+}
 
 function show_events() {
   var oArgs = {
@@ -27,8 +31,12 @@ function show_events() {
 
   EVDB.API.call("/events/search", oArgs, function(oData) {
     $("#search-results").html("");
-    oData.events.event.forEach(event => {
-      printConcert(event)
-    });
+    if (!oData.events) {
+      printError("There are no concerts in your area yet :(")
+    } else{
+      oData.events.event.forEach(event => {
+        printConcert(event)
+      });
+    }
   });
 }

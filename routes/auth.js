@@ -31,7 +31,8 @@ authRoutes.post("/signup", (req, res, next) => {
   else if(!( age > 18 && age<100 ) ) {
     res.render("auth/signup", { message: "La edad debe estar comprendida entre 18 y 110 años!" });
     return;
-  }else if(city === ""){
+  }
+  else if(city === ""){
     res.render("auth/signup", { message: "Indique una ciudad" });
     return;
   }
