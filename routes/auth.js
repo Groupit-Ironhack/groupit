@@ -30,7 +30,6 @@ authRoutes.post("/signup", (req, res, next) => {
   }
   else if(!( age > 18 && age<100 ) ) {
     res.render("auth/signup", { message: "The age must be between 18 and 110 years(for your own safety)" });
-    return;
   }else if(city === ""){
     res.render("auth/signup", { message: "You must enter the city" });
 
@@ -110,7 +109,7 @@ authRoutes.post('/profile/edit', upload.single('imgUrl'),(req, res, next) => {
   });
 });
 
-authRoutes.get('/profile', (req, res, next) => {
+authRoutes.get('/profile', isLoggedIn, (req, res, next) => {
   const userId  = req.user._id;
   res.redirect(`/profile/${userId}`)
 });
@@ -140,7 +139,7 @@ authRoutes.get("/logout", (req, res) => {
 });
 
 
-authRoutes.get("/user/myplans", (req, res, next) => {
+authRoutes.get("/user/myplans", isLoggedIn,(req, res, next) => {
   const userId = req.user;
   
   PlanUser.find({userId})

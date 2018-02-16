@@ -74,6 +74,8 @@ a {
   text-align: center;
   background-color: lightblue;
   color: white;
+  height: 60px;
+  line-height: 60px;
 }
 
 .error-message{
